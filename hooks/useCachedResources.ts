@@ -1,7 +1,7 @@
-import { Ionicons } from "@expo/vector-icons";
-import * as Font from "expo-font";
-import * as SplashScreen from "expo-splash-screen";
-import * as React from "react";
+import { Ionicons } from '@expo/vector-icons';
+import * as Font from 'expo-font';
+import * as SplashScreen from 'expo-splash-screen';
+import * as React from 'react';
 
 export default function useCachedResources() {
   const [isLoadingComplete, setLoadingComplete] = React.useState(false);
@@ -11,39 +11,19 @@ export default function useCachedResources() {
     async function loadResourcesAndDataAsync() {
       try {
         SplashScreen.preventAutoHideAsync();
+
         // Load fonts
         await Font.loadAsync({
           ...Ionicons.font,
-          "space-mono": require("../assets/fonts/SpaceMono-Regular.ttf"),
-          Poppins: {
-            uri: "https://medayoci.fra1.cdn.digitaloceanspaces.com/fonts/Poppins/Poppins-Regular.ttf",
-            display: Font.FontDisplay.FALLBACK,
-          },
-          "Poppins-Light": {
-            uri: "https://medayoci.fra1.cdn.digitaloceanspaces.com/fonts/Poppins/Poppins-Light.ttf",
-            display: Font.FontDisplay.FALLBACK,
-          },
-          "Poppins-Medium": {
-            uri: "https://medayoci.fra1.cdn.digitaloceanspaces.com/fonts/Poppins/Poppins-Medium.ttf",
-            display: Font.FontDisplay.FALLBACK,
-          },
-          "Poppins-SemiBold": {
-            uri: "https://medayoci.fra1.cdn.digitaloceanspaces.com/fonts/Poppins/Poppins-SemiBold.ttf",
-            display: Font.FontDisplay.FALLBACK,
-          },
-          "Poppins-Bold": {
-            uri: "https://medayoci.fra1.cdn.digitaloceanspaces.com/fonts/Poppins/Poppins-Bold.ttf",
-            display: Font.FontDisplay.FALLBACK,
-          },
-          "Poppins-Thin": {
-            uri: "https://medayoci.fra1.cdn.digitaloceanspaces.com/fonts/Poppins/Poppins-Bold.ttf",
-            display: Font.FontDisplay.FALLBACK,
-          },
-        });
-        // Load fonts
-        await Font.loadAsync({
-          ...Ionicons.font,
-          "space-mono": require("../assets/fonts/SpaceMono-Regular.ttf"),
+          'space-mono': require('../assets/fonts/SpaceMono-Regular.ttf'),
+          'sora-bold': require('../assets/fonts/sora/Sora-Bold.ttf'),
+          'sora-extra-bold': require('../assets/fonts/sora/Sora-ExtraBold.ttf'),
+          'sora-extra-light': require('../assets/fonts/sora/Sora-ExtraLight.ttf'),
+          'sora-light': require('../assets/fonts/sora/Sora-Light.ttf'),
+          'sora-medium': require('../assets/fonts/sora/Sora-Medium.ttf'),
+          'sora-regular': require('../assets/fonts/sora/Sora-Regular.ttf'),
+          'sora-semi-bold': require('../assets/fonts/sora/Sora-SemiBold.ttf'),
+          'sora-thin': require('../assets/fonts/sora/Sora-Thin.ttf'),
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service

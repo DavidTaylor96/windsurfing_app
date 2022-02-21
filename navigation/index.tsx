@@ -12,6 +12,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import * as React from "react";
 import { ColorSchemeName } from "react-native";
 import HomeScreen from "../screens/home-page/home-page";
+import { Playground } from "../screens/playground/playground";
 import { RootStackParamList } from "../types";
 import LinkingConfiguration from "./LinkingConfiguration";
 
@@ -37,7 +38,8 @@ const Stack = createStackNavigator<RootStackParamList>();
 function RootNavigator() {
   return (
     <Stack.Navigator screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="Root" component={HomeScreen} />
+      {/* <Stack.Screen name="Root" component={HomeScreen} /> */}
+      <Stack.Screen name="Playground" component={Playground} />
     </Stack.Navigator>
   );
 }
