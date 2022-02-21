@@ -5,6 +5,7 @@ import { View, Text } from '../../components/Themed';
 import useDefaultSafeView from '../../hooks/useDefaultSafeView';
 
 export default function HomeScreen() {
+  
   const insets = useDefaultSafeView();
 
   return (
