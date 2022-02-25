@@ -7,7 +7,7 @@ import { useFomattedScheduledData } from '../../hooks/label-fomater';
 export const Playground = () => {
   const [textInput, setTextInput] = React.useState<string>('');
 
-  const { assessments } = useFomattedScheduledData({
+  const { data } = useFomattedScheduledData({
     textInput: textInput,
   });
 
@@ -25,7 +25,7 @@ export const Playground = () => {
     <View style={styles.wrapper}>
       <View style={styles.bottomSheetWrapper}>
         <BottomSheetSearchListComponent
-          SectionList={{ data: assessments, onPress }}
+          SectionList={{data: data, onPress }}
           TextInputOptions={{
             placeholder: 'Search for subject',
             value: textInput,

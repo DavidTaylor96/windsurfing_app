@@ -40,12 +40,12 @@ const listData: ListDateType[] = [
 
 export const useFomattedScheduledData = (props: IuseFomattedScheduledData) => {
 
-  const SectionListAssessments = {
-    get assessments(): SectionList[] {
+  const SectionList = {
+    get data(): SectionList[] {
       if (!listData) return [];
 
       const subjectGrouping: SectionList[] = [
-        { title: 'Assessments', data: [] },
+        { title: 'Recent', data: [] },
       ];
 
       const listSubjectsFilter = props.textInput
@@ -69,6 +69,6 @@ export const useFomattedScheduledData = (props: IuseFomattedScheduledData) => {
   };
 
   return {
-    assessments: SectionListAssessments.assessments,
+    data: SectionList.data,
   };
 };
