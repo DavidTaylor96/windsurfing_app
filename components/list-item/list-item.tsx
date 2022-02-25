@@ -16,8 +16,11 @@ export const ListItem: FC<IListItem> = (props) => {
 
 const styles = StyleSheet.create({
   wrapper: {
-    paddingVertical: 20,
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    paddingVertical: 10,
     borderBottomWidth: 1,
-    borderColor: '#CBCBCB'
+    borderColor: '#E5E5E5',
+    marginHorizontal: 20,  
   },
 });
