@@ -1,51 +1,41 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import { ListIcon } from '../../components/list-icons';
-import { ListItem } from '../../components/list-item/list-item';
-import {
-  Column,
-  Row,
-} from '../../components/placement-component/placement-component';
-import { Text, View } from '../../components/Themed';
-
-type ListDateType = {
-  location: string;
-  region: string;
-};
+import { BottomSheetSearchListComponent } from '../../components/bottom-sheet/bottom-sheet';
+import { View } from '../../components/Themed';
+import { useFomattedScheduledData } from '../../hooks/label-fomater';
 
 export const Playground = () => {
-  const listData: ListDateType[] = [
-    {
-      location: 'FindHorn',
-      region: 'Highlands, Scotland',
-    },
-    {
-      location: 'FindHorn',
-      region: 'Highlands, Scotland',
-    },
-    {
-      location: 'FindHorn',
-      region: 'Highlands, Scotland',
-    },
-    {
-      location: 'FindHorn',
-      region: 'Highlands, Scotland',
-    },
-  ];
+  const [textInput, setTextInput] = React.useState<string>('');
+
+  const { assessments } = useFomattedScheduledData({
+    textInput: textInput,
+  });
+
+  const onChange = (value: string) => {
+    setTextInput(value);
+  };
+
+  const snapPoints = React.useMemo(() => ['20%', '30%', '55%'], []);
+
+  const onPress = () => {
+    alert('batman');
+  };
 
   return (
     <View style={styles.wrapper}>
-      {listData.map((location, index) => (
-        <ListItem onPress={() => alert('batman')} key={index}>
-          <ListIcon icon="map-pin" />
-          <Column>
-            <Text weight="h3">{location.location}</Text>
-            <Text weight="h4" style={{ color: '#AAAAAA' }}>
-              {location.region}
-            </Text>
-          </Column>
-        </ListItem>
-      ))}
+      <View style={styles.bottomSheetWrapper}>
+        <BottomSheetSearchListComponent
+          SectionList={{ data: assessments, onPress }}
+          TextInputOptions={{
+            placeholder: 'Search for subject',
+            value: textInput,
+            clearButtonMode: 'while-editing',
+            onChangeText: onChange,
+            style: styles.input,
+          }}
+          snapPoints={snapPoints}
+        />
+      </View>
     </View>
   );
 };
@@ -58,7 +48,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
 
+  bottomSheetWrapper: {
+    marginTop: 100,
+    flex: 1,
+  },
   spacer: {
     height: 10,
+  },
+
+  input: {
+    borderRadius: 6,
+    fontSize: 16,
+    marginLeft: 5,
+    flex: 1,
   },
 });
