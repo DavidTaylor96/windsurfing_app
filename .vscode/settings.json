@@ -1,0 +1,92 @@
+{
+    "editor.wordWrap": "on",
+    "svg.preview.background": "black",
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "editor.gotoLocation.multipleReferences": "goto",
+    "editor.gotoLocation.multipleDeclarations": "goto",
+    "editor.gotoLocation.multipleDefinitions": "goto",
+    "conventionalCommits.scopes": [
+      "website",
+      "meeting",
+      "api",
+      "mobile"
+    ],
+    "git.autofetch": true,
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    // Controls if quick suggestions should show up while typing
+    "editor.quickSuggestions": {
+      "other": false,
+      "comments": false,
+      "strings": false
+    },
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.quickSuggestionsDelay": 100,
+    "editor.suggestOnTriggerCharacters": true,
+    "editor.tabCompletion": "on",
+    "editor.suggest.localityBonus": true,
+    "editor.suggestSelection": "first",
+    "editor.wordBasedSuggestions": false,
+    "tslint.alwaysShowStatus": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "gitlens.keymap": "none",
+    "workbench.sideBar.location": "left",
+    "vsicons.dontShowNewVersionMessage": true,
+    "team.showWelcomeMessage": false,
+    "files.insertFinalNewline": true,
+    "typescript.format.insertSpaceBeforeFunctionParenthesis": false,
+    "typescript.preferences.quoteStyle": "single",
+    "todo-tree.flat": false,
+    "todo-tree.expanded": true,
+    "cSpell.enabled": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "editor.parameterHints.enabled": true,
+    "editor.suggest.filterGraceful": true,
+    "emmet.showSuggestionsAsSnippets": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "autoimport.autoComplete": false,
+    "emmet.showAbbreviationSuggestions": false,
+    "cSpell.words": [
+      ""
+    ],
+    "editor.snippetSuggestions": "none",
+    "typescript.implementationsCodeLens.enabled": true,
+    "typescript.check.npmIsInstalled": true,
+    "typescript.suggest.enabled": true,
+    "gitlens.codeLens.enabled": false,
+    "gitlens.codeLens.recentChange.enabled": true,
+    "githd.logView.expressMode": true,
+    "todo-tree.tree.expanded": true,
+    "todo-tree.tree.flat": false,
+    "todo-tree.ripgrep.ripgrep": "/Applications/Visual Studio Code.app/Contents/Resources/app/node_modules.asar.unpacked/vscode-ripgrep/bin/rg",
+    "files.exclude": {
+      "node_modules/": false,
+      "**/__*__/": true,
+    },
+    "[typescriptreact]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascript]": {
+      "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "debug.javascript.usePreview": false,
+    "jest.autoEnable": true,
+    // "jest.pathToJest": "yarn jest",
+    "jest.coverageFormatter": "GutterFormatter",
+    "jest.pathToConfig": "./jest.config.js",
+    "jest.showCoverageOnLoad": true,
+    "jest.restartJestOnSnapshotUpdate": true,
+    // "jest.debugMode": true,
+    // "jest.rootPath": "./",
+    "jest.enableCodeLens": true,
+    "jest.enableSnapshotPreviews": true,
+    "jest.enableInlineErrorMessages": true,
+    "jest.debugCodeLens.showWhenTestStateIn": [
+      "fail",
+      "unknown",
+      "pass",
+      "skip",
+    ],
+    "editor.tabSize": 2
+  }
+  
