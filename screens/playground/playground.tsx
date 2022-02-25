@@ -1,22 +1,51 @@
 import * as React from 'react';
-import { StyleSheet, Image } from 'react-native';
-import { View, Text } from '../../components/Themed';
-import useDefaultSafeView from '../../hooks/useDefaultSafeView';
+import { StyleSheet } from 'react-native';
+import { ListIcon } from '../../components/list-icons';
+import { ListItem } from '../../components/list-item/list-item';
+import {
+  Column,
+  Row,
+} from '../../components/placement-component/placement-component';
+import { Text, View } from '../../components/Themed';
+
+type ListDateType = {
+  location: string;
+  region: string;
+};
 
 export const Playground = () => {
+  const listData: ListDateType[] = [
+    {
+      location: 'FindHorn',
+      region: 'Highlands, Scotland',
+    },
+    {
+      location: 'FindHorn',
+      region: 'Highlands, Scotland',
+    },
+    {
+      location: 'FindHorn',
+      region: 'Highlands, Scotland',
+    },
+    {
+      location: 'FindHorn',
+      region: 'Highlands, Scotland',
+    },
+  ];
+
   return (
     <View style={styles.wrapper}>
-      <Text weight="h1">Hello world</Text>
-      <View style={styles.spacer} />
-      <Text weight="h2">Hello world</Text>
-      <View style={styles.spacer} />
-      <Text weight="h3">Hello world</Text>
-      <View style={styles.spacer} />
-      <Text weight="h4">Hello world</Text>
-      <View style={styles.spacer} />
-      <Text weight="h5">Hello world</Text>
-      <View style={styles.spacer} />
-      <Text weight="normal">Hello world</Text>
+      {listData.map((location, index) => (
+        <ListItem onPress={() => alert('batman')} key={index}>
+          <ListIcon icon="map-pin" />
+          <Column>
+            <Text weight="h3">{location.location}</Text>
+            <Text weight="h4" style={{ color: '#AAAAAA' }}>
+              {location.region}
+            </Text>
+          </Column>
+        </ListItem>
+      ))}
     </View>
   );
 };
@@ -25,8 +54,8 @@ const styles = StyleSheet.create({
   wrapper: {
     display: 'flex',
     flex: 1,
-    alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'white',
   },
 
   spacer: {
