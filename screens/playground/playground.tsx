@@ -15,7 +15,7 @@ export const Playground = () => {
     setTextInput(value);
   };
 
-  const snapPoints = React.useMemo(() => ['20%', '30%', '55%'], []);
+  const snapPoints = React.useMemo(() => ['20%', '30%', '55%', '80%'], []);
 
   const onPress = () => {
     alert('batman');
@@ -25,7 +25,7 @@ export const Playground = () => {
     <View style={styles.wrapper}>
       <View style={styles.bottomSheetWrapper}>
         <BottomSheetSearchListComponent
-          SectionList={{data: data, onPress }}
+          SectionList={{ data: data, onPress }}
           TextInputOptions={{
             placeholder: 'Search for subject',
             value: textInput,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'white',
+    backgroundColor: 'aqua',
   },
 
   bottomSheetWrapper: {
