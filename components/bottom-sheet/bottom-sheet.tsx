@@ -56,7 +56,7 @@ export const BottomSheetSearchListComponent: FC<IBottomSheet> = (props) => {
 
     return (
       <View style={styles.header}>
-        <Text weight="h3">{section.title}</Text>
+        <Text weight="h1">{section.title}</Text>
         <View  style={styles.underline} />
       </View>
     );
