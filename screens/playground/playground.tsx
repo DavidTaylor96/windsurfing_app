@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 import { BottomSheetSearchListComponent } from '../../components/bottom-sheet/bottom-sheet';
 import { View } from '../../components/Themed';
 import { useFomattedScheduledData } from '../../hooks/label-fomater';
@@ -15,27 +16,38 @@ export const Playground = () => {
     setTextInput(value);
   };
 
-  const snapPoints = React.useMemo(() => ['20%', '30%', '55%', '80%'], []);
+  const snapPoints = React.useMemo(() => ['35%', '40%', '55%', '80%'], []);
 
   const onPress = () => {
     alert('batman');
   };
 
+  const [mapRegion, setmapRegion] = React.useState({
+    latitude:  55.953251,
+    longitude:  -3.188267,
+    latitudeDelta: 1.1036,
+    longitudeDelta: 1.1612,
+  });
+
   return (
     <View style={styles.wrapper}>
-      <View style={styles.bottomSheetWrapper}>
-        <BottomSheetSearchListComponent
-          SectionList={{ data: data, onPress }}
-          TextInputOptions={{
-            placeholder: 'Search for subject',
-            value: textInput,
-            clearButtonMode: 'while-editing',
-            onChangeText: onChange,
-            style: styles.input,
-          }}
-          snapPoints={snapPoints}
-        />
-      </View>
+      <MapView
+        style={{ alignSelf: 'stretch', height: '100%' }}
+        region={mapRegion}
+      >
+        <Marker coordinate={mapRegion} title='Marker' />
+      </MapView>
+      <BottomSheetSearchListComponent
+        SectionList={{ data: data, onPress }}
+        TextInputOptions={{
+          placeholder: 'Search for subject',
+          value: textInput,
+          clearButtonMode: 'while-editing',
+          onChangeText: onChange,
+          style: styles.input,
+        }}
+        snapPoints={snapPoints}
+      />
     </View>
   );
 };
@@ -45,12 +57,10 @@ const styles = StyleSheet.create({
     display: 'flex',
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: 'aqua',
   },
 
   bottomSheetWrapper: {
     marginTop: 100,
-    flex: 1,
   },
   spacer: {
     height: 10,
