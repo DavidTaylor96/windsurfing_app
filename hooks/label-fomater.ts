@@ -1,68 +1,62 @@
 import { RouteProp, useRoute } from '@react-navigation/native';
-import { SectionList } from '../components/bottom-sheet/bottom-sheet';
+import { IData, SectionList } from '../components/bottom-sheet/bottom-sheet';
 import { BottomTabParamList } from '../types';
 
 interface IuseFomattedScheduledData {
   textInput: string;
 }
 
-type ListDateType = {
-  id: string;
-  location: string;
-  region: string;
-};
-
-const listData: ListDateType[] = [
+const listData: IData[] = [
   {
-    id: '123',
-    location: 'FindHorn',
-    region: 'Highlands, Scotland',
+    _id: '123',
+    title: 'FindHorn',
+    description: 'Highlands, Scotland',
   },
   {
-    id: '1234',
-
-    location: 'Sandend',
-    region: 'Highlands, Scotland',
+    _id: '1234',
+    title: 'Sandend',
+    description: 'Highlands, Scotland',
   },
   {
-    id: '1235',
-
-    location: 'Thurso',
-    region: 'Highlands, Scotland',
+    _id: '1235',
+    title: 'Thurso',
+    description: 'Highlands, Scotland',
   },
   {
-    id: '1236',
-
-    location: 'Durness',
-    region: 'Highlands, Scotland',
+    _id: '1236',
+    title: 'Durness',
+    description: 'Highlands, Scotland',
   },
 ];
 
 export const useFomattedScheduledData = (props: IuseFomattedScheduledData) => {
-
   const SectionList = {
     get data(): SectionList[] {
       if (!listData) return [];
 
-      const subjectGrouping: SectionList[] = [
-        { title: 'Recent', data: [] },
-      ];
+      const subjectGrouping: SectionList[] = [{ title: 'Recent', data: [] }];
 
       const listSubjectsFilter = props.textInput
         ? listData?.filter((listItem) =>
-            listItem?.location
+            listItem?.title
               ?.toLowerCase()
               .includes(props.textInput.toLowerCase())
           )
         : listData;
 
+
+        
+
       for (const subjectInfo of listSubjectsFilter) {
+
+
         subjectGrouping[0].data.push({
-          _id: subjectInfo.id,
-          title: subjectInfo.location,
-          description: subjectInfo.region,
+          _id: subjectInfo._id,
+          title: subjectInfo.title,
+          description: subjectInfo.description,
         });
       }
+
 
       return subjectGrouping;
     },

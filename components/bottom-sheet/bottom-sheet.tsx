@@ -9,7 +9,7 @@ import { ListIcon } from '../list-icons';
 import { ListItem } from '../list-item/list-item';
 import { Column } from '../placement-component/placement-component';
 import { Text, View } from '../Themed';
-import { StyleSheet } from 'react-native';
+import { SectionListData, StyleSheet } from 'react-native';
 
 export interface IData {
   _id: string;
@@ -51,6 +51,17 @@ export const BottomSheetSearchListComponent: FC<IBottomSheet> = (props) => {
     );
   };
 
+
+  const RenderFeedHeader = ({ section }: any )  => {
+
+    return (
+      <View style={styles.header}>
+        <Text weight="h3">{section.title}</Text>
+        <View  style={styles.underline} />
+      </View>
+    );
+  };
+
   return (
     <BottomSheet index={0} snapPoints={props.snapPoints}>
       <View style={styles.input}>
@@ -58,6 +69,7 @@ export const BottomSheetSearchListComponent: FC<IBottomSheet> = (props) => {
         <BottomSheetTextInput {...props.TextInputOptions} />
       </View>
       <BottomSheetSectionList
+        renderSectionHeader={RenderFeedHeader}
         sections={props.SectionList.data}
         stickySectionHeadersEnabled={true}
         keyExtractor={(i) => i._id}
@@ -84,7 +96,19 @@ const styles = StyleSheet.create({
 
   searchWrapper: {
     alignItems: 'center',
-
     marginRight: 5,
   },
+
+  header: {
+    backgroundColor: 'white', 
+    marginHorizontal: 20, 
+    paddingVertical: 10,
+  },
+
+  underline: {
+    height: 2,
+    width: 40, 
+    backgroundColor: '#F401F2', 
+    marginTop: 3,
+  }
 });
