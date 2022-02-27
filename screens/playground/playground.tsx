@@ -26,8 +26,8 @@ export const Playground = () => {
   const [mapRegion, setmapRegion] = React.useState<Region>({
     latitude: 55.953251,
     longitude: -3.188267,
-    latitudeDelta: 2.5036,
-    longitudeDelta: 2.5612,
+    latitudeDelta: 5.5036,
+    longitudeDelta: 5.5612,
   });
 
   return (

@@ -49,6 +49,8 @@ export const MapArea: FC<IMapArea> = ({ region }) => {
     );
   };
 
+
+  // TODO: make it on zoom in on marker in your region
   React.useEffect(() => {
     if (mapRef.current) {
       mapRef.current.fitToSuppliedMarkers(markers.map(({ id }) => id));
