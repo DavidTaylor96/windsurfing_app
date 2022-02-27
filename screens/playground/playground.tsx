@@ -4,7 +4,7 @@ import { BottomSheetSearchListComponent } from '../../components/bottom-sheet/bo
 import { View } from '../../components/Themed';
 import { useFomattedScheduledData } from '../../hooks/label-fomater';
 import { MapArea } from '../../components/map/map';
-import { Marker, Region } from 'react-native-maps';
+import MapView, { Marker, Region } from 'react-native-maps';
 
 export const Playground = () => {
   const [textInput, setTextInput] = React.useState<string>('');
@@ -32,9 +32,24 @@ export const Playground = () => {
 
 
 
+  const mapRef = React.useRef<MapView>(null);
+
+
+const onSelected = (lat: number, lng: number) => {
+  setmapRegion({
+    latitude: lat,
+    longitude: lng,
+    latitudeDelta: 0.0922,
+    longitudeDelta: 0.0421
+  })
+
+}
+
+
+
   return (
     <View style={styles.wrapper}>
-      <MapArea region={mapRegion}>
+      <MapArea region={mapRegion} onPress={onSelected}>
    
       </MapArea>
       <BottomSheetSearchListComponent

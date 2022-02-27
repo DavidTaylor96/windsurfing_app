@@ -1,13 +1,13 @@
-import { Feather, Fontisto } from '@expo/vector-icons';
-import { useNavigation } from '@react-navigation/native';
+import { Fontisto } from '@expo/vector-icons';
 import * as React from 'react';
 import { FC } from 'react';
-import { Dimensions, Image, StyleSheet } from 'react-native';
-import MapView, { Camera, Marker, Region } from 'react-native-maps';
-import { INavigation } from '../../types';
+import { StyleSheet } from 'react-native';
+import MapView, { Marker, Region } from 'react-native-maps';
 
 interface IMapArea {
   region: Region;
+
+  onPress: (lat: number, lng: number) => void;
 }
 
 const markers = [
@@ -34,22 +34,32 @@ const markers = [
   },
 ];
 
-export const MapArea: FC<IMapArea> = ({ region, children }) => {
+export const MapArea: FC<IMapArea> = ({ region, onPress }) => {
 
 
   const mapRef = React.useRef<MapView>(null);
   // const navigation = useNavigation<INavigation>();
 
-  const animateToCoordinat = (lat: number, long: number ) => {
-    mapRef.current?.animateCamera({
-      center: {
-        latitude: lat,
-        longitude: long,
-      },
-      zoom: 100,
-    });
+  // const animateToCoordinat = (lat: number, lng: number ) => {
+  //   // mapRef.current?.animateCamera({
+  //   //   center: {
+  //   //     latitude: lat,
+  //   //     longitude: long,
+  //   //     latitudeDelta: 0.0922,
+	// 	// 		longitudeDelta: 0.0421
+  //   //   },
+  //   //   zoom: 100,
+  //   // });
+  //   // setRegion({
+  //   //   latitude: lat,
+  //   //   longitude: lng,
+  //   //   latitudeDelta: 0.0922,
+  //   //   longitudeDelta: 0.0421
+  //   // })
+  // }
 
-  }
+
+
   React.useEffect(() => {
     if (mapRef.current) {
       mapRef.current.fitToSuppliedMarkers(markers.map(({ id }) => id));
@@ -60,7 +70,7 @@ export const MapArea: FC<IMapArea> = ({ region, children }) => {
     <MapView ref={mapRef} style={styles.wrapper} region={region}>
       {markers.map((marker) => (
         <Marker
-          onPress={() => animateToCoordinat(marker.latitude, marker.longitude)}
+          onPress={() => onPress(marker.latitude, marker.longitude)}
           key={marker.id}
           identifier={marker.id}
           coordinate={{
@@ -70,8 +80,6 @@ export const MapArea: FC<IMapArea> = ({ region, children }) => {
           title={marker.title}
         >
           <Fontisto name="map-marker-alt" size={29} color="#bf0f2b" />
-          
-
         </Marker>
       ))}
     </MapView>
