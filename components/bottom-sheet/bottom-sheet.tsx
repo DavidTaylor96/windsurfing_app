@@ -57,7 +57,7 @@ export const BottomSheetSearchListComponent: FC<IBottomSheet> = (props) => {
   };
 
   return (
-    <BottomSheet index={0} snapPoints={props.snapPoints}>
+    <BottomSheet index={0} snapPoints={props.snapPoints} style={styles.bottomSheet}>
       <View style={styles.input}>
         <Feather name="search" size={16} color={'#AAAAAA'} />
         <BottomSheetTextInput {...props.TextInputOptions} />
@@ -74,6 +74,10 @@ export const BottomSheetSearchListComponent: FC<IBottomSheet> = (props) => {
 };
 
 const styles = StyleSheet.create({
+
+  bottomSheet: {
+    marginTop: 100, 
+  }, 
   input: {
     flexDirection: 'row',
     alignItems: 'center',
