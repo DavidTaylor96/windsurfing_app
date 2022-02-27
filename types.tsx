@@ -3,6 +3,12 @@
  * https://reactnavigation.org/docs/typescript/
  */
 
+import { StackNavigationProp } from '@react-navigation/stack';
+
+
+ export type INavigation = 
+ StackNavigationProp<RootStackParamList>;
+
 export type RootStackParamList = {
   Root: undefined;
   NotFound: undefined;
