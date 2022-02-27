@@ -16,7 +16,7 @@ export const Playground = () => {
     setTextInput(value);
   };
 
-  const snapPoints = React.useMemo(() => ['35%', '40%', '55%', '80%'], []);
+  const snapPoints = React.useMemo(() => ['35%', '55%', '80%'], []);
 
   const onPress = () => {
     alert('batman');
