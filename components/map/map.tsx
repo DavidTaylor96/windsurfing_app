@@ -1,7 +1,8 @@
+import { Feather, Fontisto } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import * as React from 'react';
 import { FC } from 'react';
-import { Dimensions, StyleSheet } from 'react-native';
+import { Dimensions, Image, StyleSheet } from 'react-native';
 import MapView, { Camera, Marker, Region } from 'react-native-maps';
 import { INavigation } from '../../types';
 
@@ -14,26 +15,28 @@ const markers = [
     id: '123',
     latitude: 55.953251,
     longitude: -3.188267,
-    title: 'hello',
+    title: 'one',
     description: 'something new',
   },
   {
     id: '124',
     latitude: 55.853251,
     longitude: -2.488267,
-    title: 'hello',
+    title: 'two',
     description: 'something new',
   },
   {
     id: '125',
     latitude: 55.753251,
     longitude: -2.588267,
-    title: 'hello',
+    title: 'Three',
     description: 'something new',
   },
 ];
 
 export const MapArea: FC<IMapArea> = ({ region, children }) => {
+
+
   const mapRef = React.useRef<MapView>(null);
   // const navigation = useNavigation<INavigation>();
 
@@ -43,7 +46,9 @@ export const MapArea: FC<IMapArea> = ({ region, children }) => {
         latitude: lat,
         longitude: long,
       },
+      zoom: 100,
     });
+
   }
   React.useEffect(() => {
     if (mapRef.current) {
@@ -63,7 +68,11 @@ export const MapArea: FC<IMapArea> = ({ region, children }) => {
             longitude: marker.longitude,
           }}
           title={marker.title}
-        />
+        >
+          <Fontisto name="map-marker-alt" size={29} color="#bf0f2b" />
+          
+
+        </Marker>
       ))}
     </MapView>
   );
