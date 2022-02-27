@@ -7,7 +7,7 @@ import MapView, { Marker, Region } from 'react-native-maps';
 interface IMapArea {
   region: Region;
 
-  onPress: (lat: number, lng: number) => void;
+  // onPress: (lat: number, lng: number) => void;
 }
 
 const markers = [
@@ -34,31 +34,20 @@ const markers = [
   },
 ];
 
-export const MapArea: FC<IMapArea> = ({ region, onPress }) => {
-
-
+export const MapArea: FC<IMapArea> = ({ region }) => {
   const mapRef = React.useRef<MapView>(null);
-  // const navigation = useNavigation<INavigation>();
 
-  // const animateToCoordinat = (lat: number, lng: number ) => {
-  //   // mapRef.current?.animateCamera({
-  //   //   center: {
-  //   //     latitude: lat,
-  //   //     longitude: long,
-  //   //     latitudeDelta: 0.0922,
-	// 	// 		longitudeDelta: 0.0421
-  //   //   },
-  //   //   zoom: 100,
-  //   // });
-  //   // setRegion({
-  //   //   latitude: lat,
-  //   //   longitude: lng,
-  //   //   latitudeDelta: 0.0922,
-  //   //   longitudeDelta: 0.0421
-  //   // })
-  // }
-
-
+  const animateToCoordinat = (lat: number, lng: number) => {
+    mapRef.current?.animateToRegion(
+      {
+        latitude: lat,
+        longitude: lng,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+      },
+      1000
+    );
+  };
 
   React.useEffect(() => {
     if (mapRef.current) {
@@ -70,7 +59,7 @@ export const MapArea: FC<IMapArea> = ({ region, onPress }) => {
     <MapView ref={mapRef} style={styles.wrapper} region={region}>
       {markers.map((marker) => (
         <Marker
-          onPress={() => onPress(marker.latitude, marker.longitude)}
+          onPress={() => animateToCoordinat(marker.latitude, marker.longitude)}
           key={marker.id}
           identifier={marker.id}
           coordinate={{

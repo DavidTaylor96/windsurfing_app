@@ -30,26 +30,9 @@ export const Playground = () => {
     longitudeDelta: 2.5612,
   });
 
-
-
-  const mapRef = React.useRef<MapView>(null);
-
-
-const onSelected = (lat: number, lng: number) => {
-  setmapRegion({
-    latitude: lat,
-    longitude: lng,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421
-  })
-
-}
-
-
-
   return (
     <View style={styles.wrapper}>
-      <MapArea region={mapRegion} onPress={onSelected}>
+      <MapArea region={mapRegion}>
    
       </MapArea>
       <BottomSheetSearchListComponent
