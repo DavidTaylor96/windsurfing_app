@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import MapView, { Marker } from 'react-native-maps';
 import { BottomSheetSearchListComponent } from '../../components/bottom-sheet/bottom-sheet';
 import { View } from '../../components/Themed';
 import { useFomattedScheduledData } from '../../hooks/label-fomater';
+import { MapArea } from '../../components/map/map';
+import { Marker } from 'react-native-maps';
 
 export const Playground = () => {
   const [textInput, setTextInput] = React.useState<string>('');
@@ -23,20 +24,17 @@ export const Playground = () => {
   };
 
   const [mapRegion, setmapRegion] = React.useState({
-    latitude:  55.953251,
-    longitude:  -3.188267,
+    latitude: 55.953251,
+    longitude: -3.188267,
     latitudeDelta: 1.1036,
     longitudeDelta: 1.1612,
   });
 
   return (
     <View style={styles.wrapper}>
-      <MapView
-        style={{ alignSelf: 'stretch', height: '100%' }}
-        region={mapRegion}
-      >
-        <Marker coordinate={mapRegion} title='Marker' />
-      </MapView>
+      <MapArea mapRegion={mapRegion}>
+        <Marker coordinate={mapRegion} title="Marker" />
+      </MapArea>
       <BottomSheetSearchListComponent
         SectionList={{ data: data, onPress }}
         TextInputOptions={{
