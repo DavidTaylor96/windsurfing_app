@@ -34,7 +34,7 @@ export const useFomattedScheduledData = (props: IuseFomattedScheduledData) => {
     get data(): SectionList[] {
       if (!listData) return [];
 
-      const subjectGrouping: SectionList[] = [{ title: 'Recent', data: [] }];
+      const subjectGrouping: SectionList[] = [{ title: 'Places near you', data: [] }];
 
       const listSubjectsFilter = props.textInput
         ? listData?.filter((listItem) =>
