@@ -1,10 +1,6 @@
-import { RouteProp, useRoute } from '@react-navigation/native';
 import { IData, SectionList } from '../components/bottom-sheet/bottom-sheet';
-import { BottomTabParamList } from '../types';
 
-interface IuseFomattedScheduledData {
-  textInput: string;
-}
+interface IuseFomattedScheduledData {}
 
 const listData: IData[] = [
   {
@@ -36,20 +32,9 @@ export const useFomattedScheduledData = (props: IuseFomattedScheduledData) => {
 
       const subjectGrouping: SectionList[] = [{ title: 'Places near you', data: [] }];
 
-      const listSubjectsFilter = props.textInput
-        ? listData?.filter((listItem) =>
-            listItem?.title
-              ?.toLowerCase()
-              .includes(props.textInput.toLowerCase())
-          )
-        : listData;
-
-
-        
+      const listSubjectsFilter = listData;
 
       for (const subjectInfo of listSubjectsFilter) {
-
-
         subjectGrouping[0].data.push({
           _id: subjectInfo._id,
           title: subjectInfo.title,
