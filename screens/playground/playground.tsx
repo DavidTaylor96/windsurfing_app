@@ -1,48 +1,39 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { BottomSheetSearchListComponent } from '../../components/bottom-sheet/bottom-sheet';
+import { MapArea } from '../../components/map/map';
 import { View } from '../../components/Themed';
 import { useFomattedScheduledData } from '../../hooks/label-fomater';
-import { MapArea } from '../../components/map/map';
-import MapView, { Marker, Region } from 'react-native-maps';
+import { useMapNavigation } from '../../hooks/use-map-navigation';
 
 export const Playground = () => {
-  const [textInput, setTextInput] = React.useState<string>('');
-
-  const { data } = useFomattedScheduledData({
-    textInput: textInput,
-  });
-
-  const onChange = (value: string) => {
-    setTextInput(value);
-  };
-
+  const { data } = useFomattedScheduledData({});
   const snapPoints = React.useMemo(() => ['35%', '55%', '80%'], []);
 
-  const onPress = () => {
-    alert('batman');
-  };
-
-  const [mapRegion, setmapRegion] = React.useState<Region>({
-    latitude: 55.953251,
-    longitude: -3.188267,
-    latitudeDelta: 5.5036,
-    longitudeDelta: 5.5612,
-  });
+  const {
+    onRegionChangeComplete,
+    chosenLocation,
+    onChange,
+    chosenLocationText,
+    goToLocation,
+    onPress,
+  } = useMapNavigation();
 
   return (
     <View style={styles.wrapper}>
-      <MapArea region={mapRegion}>
-   
-      </MapArea>
+      <MapArea
+        onRegionChangeComplete={onRegionChangeComplete}
+        region={chosenLocation}
+      />
       <BottomSheetSearchListComponent
         SectionList={{ data: data, onPress }}
         TextInputOptions={{
-          placeholder: 'Search for subject',
-          value: textInput,
+          placeholder: 'Search for a location',
+          value: chosenLocationText,
           clearButtonMode: 'while-editing',
           onChangeText: onChange,
           style: styles.input,
+          onSubmitEditing: goToLocation,
         }}
         snapPoints={snapPoints}
       />
