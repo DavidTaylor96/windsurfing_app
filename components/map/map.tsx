@@ -44,7 +44,7 @@ const markers = [
 export const MapArea: FC<IMapArea> = (({ region, onRegionChangeComplete}) => {
 
 
-  const {mapRef, animateToCoordinat} = useMapNavigation();
+  const {mapRef, animateToCoordinat } = useMapNavigation();
 
 
 

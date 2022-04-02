@@ -3,7 +3,6 @@ import { StyleSheet } from 'react-native';
 import MapView, { Marker, Region } from 'react-native-maps';
 import { useState } from 'react';
 import * as Location from 'expo-location';
-import { useFomattedScheduledData } from './label-fomater';
 import { IMapRegion } from '../components/map/map';
 import { PermissionsService } from '../helper/permission-service';
 
@@ -13,6 +12,8 @@ export const useMapNavigation = () => {
 
   const mapRef = React.useRef<MapView>(null);
 
+
+
   const [chosenLocation, setChosenLocation] = useState<Region>({
     latitude: 55.953251,
     longitude: -3.188267,
@@ -20,7 +21,18 @@ export const useMapNavigation = () => {
     longitudeDelta: 5.5612,
   });
 
-  
+  const getUserLocatoin = async () => {
+    const userLocation = await Location.getLastKnownPositionAsync();
+    if(!userLocation) return; 
+    setChosenLocation({
+      latitude: userLocation.coords.latitude,
+      longitude: userLocation.coords.longitude,
+      latitudeDelta: 1.5036,
+      longitudeDelta: 1.5612,
+    })
+  }
+
+
   const [chosenLocationText, setChosenLocationText] = useState<string>('');
 
   const onChange = (value: string) => {
@@ -94,6 +106,7 @@ export const useMapNavigation = () => {
     chosenLocation,
     chosenLocationText,
     mapRef,
+    getInitialRegion: getUserLocatoin,
   }
 }
 

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { BottomSheetSearchListComponent } from '../../components/bottom-sheet/bottom-sheet';
+import { IconButton } from '../../components/buttons/button';
+import { Icon } from '../../components/icons';
 import { MapArea } from '../../components/map/map';
 import { View } from '../../components/Themed';
 import { useFomattedScheduledData } from '../../hooks/label-fomater';
@@ -17,6 +19,7 @@ export const Playground = () => {
     chosenLocationText,
     goToLocation,
     onPress,
+    getInitialRegion,
   } = useMapNavigation();
 
   return (
@@ -25,6 +28,10 @@ export const Playground = () => {
         onRegionChangeComplete={onRegionChangeComplete}
         region={chosenLocation}
       />
+
+      <IconButton onPress={getInitialRegion}>
+        <Icon icon="navigation" />
+      </IconButton>
       <BottomSheetSearchListComponent
         SectionList={{ data: data, onPress }}
         TextInputOptions={{
