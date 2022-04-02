@@ -3,11 +3,18 @@ import * as React from 'react';
 import { FC } from 'react';
 import { StyleSheet } from 'react-native';
 import MapView, { Marker, Region } from 'react-native-maps';
+import { useMapNavigation } from '../../hooks/use-map-navigation';
+
+export interface IMapRegion {
+  latitude: number;
+  longitude: number;
+  latitudeDelta: number;
+  longitudeDelta: number;
+}
 
 interface IMapArea {
   region: Region;
-
-  // onPress: (lat: number, lng: number) => void;
+  onRegionChangeComplete: (region: IMapRegion) => void;
 }
 
 const markers = [
@@ -34,31 +41,28 @@ const markers = [
   },
 ];
 
-export const MapArea: FC<IMapArea> = ({ region }) => {
-  const mapRef = React.useRef<MapView>(null);
-
-  const animateToCoordinat = (lat: number, lng: number) => {
-    mapRef.current?.animateToRegion(
-      {
-        latitude: lat,
-        longitude: lng,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
-      },
-      1000
-    );
-  };
+export const MapArea: FC<IMapArea> = (({ region, onRegionChangeComplete}) => {
 
 
-  // TODO: make it on zoom in on marker in your region
+  const {mapRef, animateToCoordinat} = useMapNavigation();
+
+
+
   React.useEffect(() => {
-    if (mapRef.current) {
-      mapRef.current.fitToSuppliedMarkers(markers.map(({ id }) => id));
+    if (mapRef?.current) {
+      mapRef?.current.fitToSuppliedMarkers(markers.map(({ id }) => id));
     }
   }, [markers]);
 
+
   return (
-    <MapView ref={mapRef} style={styles.wrapper} region={region}>
+    <MapView
+      ref={mapRef}
+      style={styles.wrapper}
+      region={region}
+      onRegionChangeComplete={onRegionChangeComplete}
+      showsUserLocation={true}
+    >
       {markers.map((marker) => (
         <Marker
           onPress={() => animateToCoordinat(marker.latitude, marker.longitude)}
@@ -75,7 +79,7 @@ export const MapArea: FC<IMapArea> = ({ region }) => {
       ))}
     </MapView>
   );
-};
+});
 
 const styles = StyleSheet.create({
   wrapper: {
