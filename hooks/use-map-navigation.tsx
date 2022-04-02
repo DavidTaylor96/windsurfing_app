@@ -5,14 +5,13 @@ import { useState } from 'react';
 import * as Location from 'expo-location';
 import { IMapRegion } from '../components/map/map';
 import { PermissionsService } from '../helper/permission-service';
-
-
+import BottomSheet from '@gorhom/bottom-sheet';
 
 export const useMapNavigation = () => {
 
   const mapRef = React.useRef<MapView>(null);
-
-
+  const snapPoints = React.useMemo(() => ['35%', '55%', '80%'], []);
+  const sheetRef = React.useRef<BottomSheet>(null);
 
   const [chosenLocation, setChosenLocation] = useState<Region>({
     latitude: 55.953251,
@@ -23,15 +22,14 @@ export const useMapNavigation = () => {
 
   const getUserLocatoin = async () => {
     const userLocation = await Location.getLastKnownPositionAsync();
-    if(!userLocation) return; 
+    if (!userLocation) return;
     setChosenLocation({
       latitude: userLocation.coords.latitude,
       longitude: userLocation.coords.longitude,
       latitudeDelta: 1.5036,
       longitudeDelta: 1.5612,
-    })
-  }
-
+    });
+  };
 
   const [chosenLocationText, setChosenLocationText] = useState<string>('');
 
@@ -44,9 +42,8 @@ export const useMapNavigation = () => {
   };
 
   const goToLocation = async () => {
-
-
-    const hasLocationPermissions = await PermissionsService.checkLocationPermissions();
+    const hasLocationPermissions =
+      await PermissionsService.checkLocationPermissions();
     if (!hasLocationPermissions) return;
     const foundLocations = await Location.geocodeAsync(chosenLocationText);
 
@@ -62,7 +59,6 @@ export const useMapNavigation = () => {
       longitudeDelta: 0.5,
     };
 
-
     setChosenLocation(region);
 
     const camera = {
@@ -74,14 +70,13 @@ export const useMapNavigation = () => {
       zoom: 5,
     };
     mapRef.current?.animateCamera(camera, { duration: 1000 });
+    setChosenLocationText('');
+    sheetRef.current?.snapToIndex(0);
   };
 
   const onRegionChangeComplete = (region: IMapRegion) => {
     setChosenLocation(region);
   };
-
-
-
 
   const animateToCoordinat = (lat: number, lng: number) => {
     mapRef.current?.animateToRegion(
@@ -93,9 +88,8 @@ export const useMapNavigation = () => {
       },
       1000
     );
+    sheetRef.current?.snapToIndex(0);
   };
-
-
 
   return {
     animateToCoordinat,
@@ -106,10 +100,8 @@ export const useMapNavigation = () => {
     chosenLocation,
     chosenLocationText,
     mapRef,
-    getInitialRegion: getUserLocatoin,
-  }
-}
-
-
-
-
+    getUserLocatoin,
+    snapPoints,
+    sheetRef,
+  };
+};

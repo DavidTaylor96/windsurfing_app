@@ -10,7 +10,6 @@ import { useMapNavigation } from '../../hooks/use-map-navigation';
 
 export const Playground = () => {
   const { data } = useFomattedScheduledData({});
-  const snapPoints = React.useMemo(() => ['35%', '55%', '80%'], []);
 
   const {
     onRegionChangeComplete,
@@ -19,7 +18,7 @@ export const Playground = () => {
     chosenLocationText,
     goToLocation,
     onPress,
-    getInitialRegion,
+    getUserLocatoin,
   } = useMapNavigation();
 
   return (
@@ -29,7 +28,7 @@ export const Playground = () => {
         region={chosenLocation}
       />
 
-      <IconButton onPress={getInitialRegion}>
+      <IconButton onPress={getUserLocatoin}>
         <Icon icon="navigation" />
       </IconButton>
       <BottomSheetSearchListComponent
@@ -42,7 +41,6 @@ export const Playground = () => {
           style: styles.input,
           onSubmitEditing: goToLocation,
         }}
-        snapPoints={snapPoints}
       />
     </View>
   );
