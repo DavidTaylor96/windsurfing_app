@@ -46,8 +46,6 @@ export const MapArea: FC<IMapArea> = (({ region, onRegionChangeComplete}) => {
 
   const {mapRef, animateToCoordinat } = useMapNavigation();
 
-
-
   React.useEffect(() => {
     if (mapRef?.current) {
       mapRef?.current.fitToSuppliedMarkers(markers.map(({ id }) => id));

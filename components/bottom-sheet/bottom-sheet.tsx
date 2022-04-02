@@ -1,11 +1,12 @@
 import { Feather } from '@expo/vector-icons';
 import BottomSheet, {
   BottomSheetSectionList,
-  BottomSheetTextInput
+  BottomSheetTextInput,
 } from '@gorhom/bottom-sheet';
 import { BottomSheetTextInputProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetTextInput/types';
-import React, { FC } from 'react';
+import React, { FC, forwardRef } from 'react';
 import { StyleSheet } from 'react-native';
+import { useMapNavigation } from '../../hooks/use-map-navigation';
 import { ListIcon } from '../list-icons';
 import { ListHeader } from '../list-item/list-header';
 import { ListItem } from '../list-item/list-item';
@@ -24,9 +25,7 @@ export type SectionList = {
 };
 
 interface IBottomSheet {
-  snapPoints: string[];
   TextInputOptions: BottomSheetTextInputProps;
-
   SectionList: {
     data: SectionList[];
     onPress: (item: IData) => void;
@@ -34,6 +33,8 @@ interface IBottomSheet {
 }
 
 export const BottomSheetSearchListComponent: FC<IBottomSheet> = (props) => {
+  const { sheetRef, snapPoints } = useMapNavigation();
+
   const SubjectRenderItem = (item: { item: IData }) => {
     const onPress = () => {
       if (props.SectionList.onPress) props.SectionList.onPress(item.item);
@@ -57,7 +58,11 @@ export const BottomSheetSearchListComponent: FC<IBottomSheet> = (props) => {
   };
 
   return (
-    <BottomSheet index={0} snapPoints={props.snapPoints} style={styles.bottomSheet}>
+    <BottomSheet
+      snapPoints={snapPoints}
+      ref={sheetRef}
+      style={styles.bottomSheet}
+    >
       <View style={styles.input}>
         <Feather name="search" size={16} color={'#AAAAAA'} />
         <BottomSheetTextInput {...props.TextInputOptions} />
@@ -74,10 +79,9 @@ export const BottomSheetSearchListComponent: FC<IBottomSheet> = (props) => {
 };
 
 const styles = StyleSheet.create({
-
   bottomSheet: {
-    marginTop: 100, 
-  }, 
+    marginTop: 100,
+  },
   input: {
     flexDirection: 'row',
     alignItems: 'center',
