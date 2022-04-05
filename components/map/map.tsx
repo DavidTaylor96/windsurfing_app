@@ -60,6 +60,10 @@ export const MapArea: FC<IMapArea> = (({ region, onRegionChangeComplete}) => {
       region={region}
       onRegionChangeComplete={onRegionChangeComplete}
       showsUserLocation={true}
+      showsPointsOfInterest={true} 
+      showsCompass={false}
+      zoomControlEnabled={false}
+
     >
       {markers.map((marker) => (
         <Marker

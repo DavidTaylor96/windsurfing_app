@@ -26,8 +26,8 @@ export const useMapNavigation = () => {
     setChosenLocation({
       latitude: userLocation.coords.latitude,
       longitude: userLocation.coords.longitude,
-      latitudeDelta: 1.5036,
-      longitudeDelta: 1.5612,
+      latitudeDelta: 0.5036,
+      longitudeDelta: 0.5612,
     });
   };
 
@@ -55,8 +55,8 @@ export const useMapNavigation = () => {
     const region: Region = {
       latitude: foundLocations[0].latitude,
       longitude: foundLocations[0].longitude,
-      latitudeDelta: 0.5,
-      longitudeDelta: 0.5,
+      latitudeDelta: 0.2,
+      longitudeDelta: 0.2,
     };
 
     setChosenLocation(region);
@@ -67,11 +67,11 @@ export const useMapNavigation = () => {
         latitude: foundLocations[0].latitude,
       },
       altitude: 40000,
-      zoom: 5,
+      zoom: 1,
     };
     mapRef.current?.animateCamera(camera, { duration: 1000 });
-    setChosenLocationText('');
     sheetRef.current?.snapToIndex(0);
+    setChosenLocationText('');
   };
 
   const onRegionChangeComplete = (region: IMapRegion) => {
@@ -83,8 +83,8 @@ export const useMapNavigation = () => {
       {
         latitude: lat,
         longitude: lng,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        latitudeDelta: 0.122,
+        longitudeDelta: 0.121,
       },
       1000
     );

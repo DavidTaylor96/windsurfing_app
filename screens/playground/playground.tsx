@@ -19,6 +19,7 @@ export const Playground = () => {
     goToLocation,
     onPress,
     getUserLocatoin,
+    sheetRef,
   } = useMapNavigation();
 
   return (
@@ -41,6 +42,7 @@ export const Playground = () => {
           style: styles.input,
           onSubmitEditing: goToLocation,
         }}
+        ref={sheetRef}
       />
     </View>
   );

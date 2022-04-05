@@ -32,8 +32,8 @@ interface IBottomSheet {
   };
 }
 
-export const BottomSheetSearchListComponent: FC<IBottomSheet> = (props) => {
-  const { sheetRef, snapPoints } = useMapNavigation();
+export const BottomSheetSearchListComponent =  React.forwardRef<BottomSheet,IBottomSheet>((props, ref) => {
+  const { snapPoints } = useMapNavigation();
 
   const SubjectRenderItem = (item: { item: IData }) => {
     const onPress = () => {
@@ -60,7 +60,7 @@ export const BottomSheetSearchListComponent: FC<IBottomSheet> = (props) => {
   return (
     <BottomSheet
       snapPoints={snapPoints}
-      ref={sheetRef}
+      ref={ref}
       style={styles.bottomSheet}
     >
       <View style={styles.input}>
@@ -76,7 +76,7 @@ export const BottomSheetSearchListComponent: FC<IBottomSheet> = (props) => {
       />
     </BottomSheet>
   );
-};
+});
 
 const styles = StyleSheet.create({
   bottomSheet: {
