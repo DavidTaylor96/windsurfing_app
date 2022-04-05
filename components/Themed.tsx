@@ -73,7 +73,7 @@ export function Text(props: TextProps) {
 
   return (
     <DefaultText
-      style={[{ fontSize, fontFamily }, { color }, style]}
+      style={[{ fontSize, fontFamily }, { color: 'black' }, style]}
       {...otherProps}
     />
   );
