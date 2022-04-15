@@ -1,5 +1,7 @@
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
+
+
 class ISafeViewProps {
   defaultBottom = 15;
   defaultTop = 15;
@@ -8,6 +10,8 @@ class ISafeViewProps {
 }
 
 export default function useDefaultSafeView(options = new ISafeViewProps()) {
+
+
   let insets = useSafeAreaInsets();
 
   if (insets.bottom < options.defaultBottom) {

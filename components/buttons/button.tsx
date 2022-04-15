@@ -2,12 +2,14 @@ import React, { FC } from 'react';
 import { Pressable } from 'react-native';
 import useDefaultSafeView from '../../hooks/useDefaultSafeView';
 
-interface IIconButtonProps {
+interface IButtonProps {
   onPress: () => void;
 }
 
-export const IconButton: FC<IIconButtonProps> = ({ children, onPress }) => {
+export const Button: FC<IButtonProps> = ({ children, onPress }) => {
+
   const inset = useDefaultSafeView();
+
   return (
     <Pressable
       style={{

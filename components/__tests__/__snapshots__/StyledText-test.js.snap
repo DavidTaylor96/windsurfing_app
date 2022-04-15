@@ -5,7 +5,11 @@ exports[`renders correctly 1`] = `
   style={
     Array [
       Object {
-        "color": "#000",
+        "fontFamily": "sora-regular",
+        "fontSize": 12,
+      },
+      Object {
+        "color": "black",
       },
       Array [
         undefined,

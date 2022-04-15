@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { BottomSheetSearchListComponent } from '../../components/bottom-sheet/bottom-sheet';
-import { IconButton } from '../../components/buttons/button';
+import { Button } from '../../components/buttons/button';
 import { Icon } from '../../components/icons';
 import { MapArea } from '../../components/map/map';
 import { View } from '../../components/Themed';
@@ -29,9 +29,9 @@ export const Playground = () => {
         region={chosenLocation}
       />
 
-      <IconButton onPress={getUserLocatoin}>
+      <Button onPress={getUserLocatoin}>
         <Icon icon="navigation" />
-      </IconButton>
+      </Button>
       <BottomSheetSearchListComponent
         SectionList={{ data: data, onPress }}
         TextInputOptions={{
