@@ -2,9 +2,9 @@ import * as React from 'react';
 import { StyleSheet } from 'react-native';
 import { BottomSheetSearchListComponent } from '../../components/bottom-sheet/bottom-sheet';
 import { Button } from '../../components/buttons/button';
-import { Icon } from '../../components/icons';
+import { Icon } from '../../components/icons/icons';
 import { MapArea } from '../../components/map/map';
-import { View } from '../../components/Themed';
+import { View } from '../../components/Themed/Themed';
 import { useFomattedScheduledData } from '../../hooks/label-fomater';
 import { useMapNavigation } from '../../hooks/use-map-navigation';
 

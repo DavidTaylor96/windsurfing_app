@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List Icons 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#E5E5E5",
+      "borderRadius": 34,
+      "height": 45,
+      "justifyContent": "center",
+      "marginRight": 10,
+      "width": 45,
+    }
+  }
+>
+  <Text />
+</View>
+`;

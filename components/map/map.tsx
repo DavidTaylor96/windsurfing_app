@@ -5,6 +5,8 @@ import { StyleSheet } from 'react-native';
 import MapView, { Marker, Region } from 'react-native-maps';
 import { useMarkerPressed } from '../../hooks/marker-pressed';
 import { useMapNavigation } from '../../hooks/use-map-navigation';
+import { markers } from './map-data';
+import { MapMarkers } from './map-markers';
 
 export interface IMapRegion {
   latitude: number;
@@ -18,35 +20,8 @@ interface IMapArea {
   onRegionChangeComplete: (region: IMapRegion) => void;
 }
 
-const markers = [
-  {
-    id: '123',
-    latitude: 55.953251,
-    longitude: -3.188267,
-    title: 'one',
-    description: 'something new',
-  },
-  {
-    id: '124',
-    latitude: 55.853251,
-    longitude: -2.488267,
-    title: 'two',
-    description: 'something new',
-  },
-  {
-    id: '125',
-    latitude: 55.753251,
-    longitude: -2.588267,
-    title: 'Three',
-    description: 'something new',
-  },
-];
-
-export const MapArea: FC<IMapArea> = (({ region, onRegionChangeComplete}) => {
-
-
-  const {mapRef, animateToCoordinat } = useMapNavigation();
-  const {pressed, setPressed} = useMarkerPressed();
+export const MapArea: FC<IMapArea> = ({ region, onRegionChangeComplete }) => {
+  const { mapRef, animateToCoordinat } = useMapNavigation();
 
 
   React.useEffect(() => {
@@ -55,7 +30,6 @@ export const MapArea: FC<IMapArea> = (({ region, onRegionChangeComplete}) => {
     }
   }, [markers]);
 
-
   return (
     <MapView
       ref={mapRef}
@@ -63,31 +37,15 @@ export const MapArea: FC<IMapArea> = (({ region, onRegionChangeComplete}) => {
       region={region}
       onRegionChangeComplete={onRegionChangeComplete}
       showsUserLocation={true}
-      showsPointsOfInterest={true} 
+      showsPointsOfInterest={true}
       showsCompass={false}
       zoomControlEnabled={false}
-
     >
-      {markers.map((marker) => (
-        <Marker
-          onPress={() => {
-            animateToCoordinat(marker.latitude, marker.longitude)
-            setPressed(!pressed);
-          }}
-          key={marker.id}
-          identifier={marker.id}
-          coordinate={{
-            latitude: marker.latitude,
-            longitude: marker.longitude,
-          }}
-          title={marker.title}
-        >
-          <Fontisto name="map-marker-alt" size={29} color="#bf0f2b" />
-        </Marker>
-      ))}
+      <MapMarkers />
     </MapView>
   );
-});
+};
+
 
 const styles = StyleSheet.create({
   wrapper: {

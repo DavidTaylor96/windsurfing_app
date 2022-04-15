@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
-import { View } from '../../components/Themed';
+import { View } from '../Themed/Themed';
 
 export const Row: FC = (props) => {
   return <View style={styles.row}>{props.children}</View>;

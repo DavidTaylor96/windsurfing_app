@@ -1,0 +1,113 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Map area 1`] = `
+<AIRMap
+  handlePanDrag={false}
+  initialRegion={null}
+  onChange={[Function]}
+  onLayout={[Function]}
+  onMapReady={[Function]}
+  onMarkerPress={[Function]}
+  onRegionChangeComplete={
+    [MockFunction] {
+      "calls": Array [
+        Array [],
+      ],
+      "results": Array [
+        Object {
+          "type": "return",
+          "value": undefined,
+        },
+      ],
+    }
+  }
+  region={
+    Object {
+      "latitude": 55.953251,
+      "latitudeDelta": 5.5036,
+      "longitude": -3.188267,
+      "longitudeDelta": 5.5612,
+    }
+  }
+  showsCompass={false}
+  showsPointsOfInterest={true}
+  showsUserLocation={true}
+  style={
+    Object {
+      "alignSelf": "stretch",
+      "height": "100%",
+    }
+  }
+  zoomControlEnabled={false}
+>
+  <AIRMapMarker
+    coordinate={
+      Object {
+        "latitude": 55.953251,
+        "longitude": -3.188267,
+      }
+    }
+    identifier="123"
+    onPress={[Function]}
+    stopPropagation={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "position": "absolute",
+        },
+        undefined,
+      ]
+    }
+    title="one"
+  >
+    <Text />
+  </AIRMapMarker>
+  <AIRMapMarker
+    coordinate={
+      Object {
+        "latitude": 55.853251,
+        "longitude": -2.488267,
+      }
+    }
+    identifier="124"
+    onPress={[Function]}
+    stopPropagation={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "position": "absolute",
+        },
+        undefined,
+      ]
+    }
+    title="two"
+  >
+    <Text />
+  </AIRMapMarker>
+  <AIRMapMarker
+    coordinate={
+      Object {
+        "latitude": 55.753251,
+        "longitude": -2.588267,
+      }
+    }
+    identifier="125"
+    onPress={[Function]}
+    stopPropagation={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "position": "absolute",
+        },
+        undefined,
+      ]
+    }
+    title="Three"
+  >
+    <Text />
+  </AIRMapMarker>
+</AIRMap>
+`;

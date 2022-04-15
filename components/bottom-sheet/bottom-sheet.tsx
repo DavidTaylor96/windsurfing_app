@@ -9,11 +9,11 @@ import React, { FC, forwardRef } from 'react';
 import { StyleSheet } from 'react-native';
 import { useMarkerPressed } from '../../hooks/marker-pressed';
 import { useMapNavigation } from '../../hooks/use-map-navigation';
-import { ListIcon } from '../list-icons';
+import { ListIcon } from '../list-icon/list-icons';
 import { ListHeader } from '../list-item/list-header';
 import { ListItem } from '../list-item/list-item';
 import { Column } from '../placement-component/placement-component';
-import { Text, View } from '../Themed';
+import { Text, View } from '../Themed/Themed';
 
 export interface IData {
   _id: string;

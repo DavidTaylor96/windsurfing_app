@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Map markers 1`] = `
+Array [
+  <AIRMapMarker
+    coordinate={
+      Object {
+        "latitude": 55.953251,
+        "longitude": -3.188267,
+      }
+    }
+    identifier="123"
+    onPress={[Function]}
+    stopPropagation={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "position": "absolute",
+        },
+        undefined,
+      ]
+    }
+    title="one"
+  >
+    <Text />
+  </AIRMapMarker>,
+  <AIRMapMarker
+    coordinate={
+      Object {
+        "latitude": 55.853251,
+        "longitude": -2.488267,
+      }
+    }
+    identifier="124"
+    onPress={[Function]}
+    stopPropagation={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "position": "absolute",
+        },
+        undefined,
+      ]
+    }
+    title="two"
+  >
+    <Text />
+  </AIRMapMarker>,
+  <AIRMapMarker
+    coordinate={
+      Object {
+        "latitude": 55.753251,
+        "longitude": -2.588267,
+      }
+    }
+    identifier="125"
+    onPress={[Function]}
+    stopPropagation={false}
+    style={
+      Array [
+        Object {
+          "backgroundColor": "transparent",
+          "position": "absolute",
+        },
+        undefined,
+      ]
+    }
+    title="Three"
+  >
+    <Text />
+  </AIRMapMarker>,
+]
+`;

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import renderer from 'react-test-renderer';
 import { ListItem } from './list-item';
-import { Text } from '../Themed'
+import { Text } from '../Themed/Themed'
 
 
 it(`List Item`, () => {

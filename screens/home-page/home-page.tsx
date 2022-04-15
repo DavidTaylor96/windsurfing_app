@@ -1,7 +1,7 @@
 
 import * as React from 'react';
 import { StyleSheet, Image } from 'react-native';
-import { View, Text } from '../../components/Themed';
+import { View, Text } from '../../components/Themed/Themed';
 import useDefaultSafeView from '../../hooks/useDefaultSafeView';
 
 export default function HomeScreen() {

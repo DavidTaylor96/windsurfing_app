@@ -2,7 +2,7 @@ import { Feather } from '@expo/vector-icons';
 import * as React from 'react';
 import { FC } from 'react';
 import { StyleSheet, Image, Pressable } from 'react-native';
-import { View } from './Themed';
+import { View } from '../Themed/Themed';
 
 interface IListIcon {
   icon: keyof typeof Feather.glyphMap;
