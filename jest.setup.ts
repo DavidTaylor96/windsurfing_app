@@ -1,6 +1,6 @@
-// import mockSafeAreaContext from 'react-native-safe-area-context/jest/mock';
+import mockSafeAreaContext from 'react-native-safe-area-context/jest/mock';
 
-// jest.mock('react-native-safe-area-context', () => mockSafeAreaContext );
+jest.mock('react-native-safe-area-context', () => mockSafeAreaContext);
 
 jest.mock(
   '@expo/vector-icons/build/vendor/react-native-vector-icons/lib/create-icon-set.js',
@@ -15,10 +15,6 @@ jest.mock('moti', () => {
 jest.mock('moti/interactions', () => {
   return () => '';
 });
-jest.mock('@react-native-mapbox-gl/maps', () => {
-  return () => '';
-});
-
 
 const mockedNavigate = jest.fn();
 
