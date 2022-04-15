@@ -3,6 +3,7 @@ import * as React from 'react';
 import { FC } from 'react';
 import { StyleSheet } from 'react-native';
 import MapView, { Marker, Region } from 'react-native-maps';
+import { useMarkerPressed } from '../../hooks/marker-pressed';
 import { useMapNavigation } from '../../hooks/use-map-navigation';
 
 export interface IMapRegion {
@@ -45,6 +46,8 @@ export const MapArea: FC<IMapArea> = (({ region, onRegionChangeComplete}) => {
 
 
   const {mapRef, animateToCoordinat } = useMapNavigation();
+  const {pressed, setPressed} = useMarkerPressed();
+
 
   React.useEffect(() => {
     if (mapRef?.current) {
@@ -67,7 +70,10 @@ export const MapArea: FC<IMapArea> = (({ region, onRegionChangeComplete}) => {
     >
       {markers.map((marker) => (
         <Marker
-          onPress={() => animateToCoordinat(marker.latitude, marker.longitude)}
+          onPress={() => {
+            animateToCoordinat(marker.latitude, marker.longitude)
+            setPressed(!pressed);
+          }}
           key={marker.id}
           identifier={marker.id}
           coordinate={{
