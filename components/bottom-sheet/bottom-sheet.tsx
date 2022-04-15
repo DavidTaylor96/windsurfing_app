@@ -4,8 +4,10 @@ import BottomSheet, {
   BottomSheetTextInput,
 } from '@gorhom/bottom-sheet';
 import { BottomSheetTextInputProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetTextInput/types';
+import { MotiView } from 'moti';
 import React, { FC, forwardRef } from 'react';
 import { StyleSheet } from 'react-native';
+import { useMarkerPressed } from '../../hooks/marker-pressed';
 import { useMapNavigation } from '../../hooks/use-map-navigation';
 import { ListIcon } from '../list-icons';
 import { ListHeader } from '../list-item/list-header';
@@ -32,24 +34,58 @@ interface IBottomSheet {
   };
 }
 
-export const BottomSheetSearchListComponent =  React.forwardRef<BottomSheet,IBottomSheet>((props, ref) => {
+export const BottomSheetSearchListComponent = React.forwardRef<
+  BottomSheet,
+  IBottomSheet
+>((props, ref) => {
+
   const { snapPoints } = useMapNavigation();
+  const {pressed } = useMarkerPressed();
+
 
   const SubjectRenderItem = (item: { item: IData }) => {
+
     const onPress = () => {
       if (props.SectionList.onPress) props.SectionList.onPress(item.item);
     };
-
+    
     return (
-      <ListItem onPress={onPress}>
-        <ListIcon icon="map-pin" />
-        <Column>
-          <Text weight="h3">{item.item.title}</Text>
-          <Text weight="h4" style={{ color: '#AAAAAA' }}>
-            {item.item.description}
-          </Text>
-        </Column>
-      </ListItem>
+      <MotiView
+        from={{ translateX: 0 }}
+        transition={{ type: 'timing', duration: 450 }}
+      >
+        <ListItem onPress={onPress}>
+          <ListIcon icon="map-pin" />
+          <Column>
+            <Text weight="h3">{item.item.title}</Text>
+            <Text weight="h4" style={{ color: '#AAAAAA' }}>
+              {item.item.description}
+            </Text>
+          </Column>
+        </ListItem>
+      </MotiView>
+    );
+  };
+  const SubjectInfoItem = (item: { item: IData }) => {
+
+    const onPress = () => {
+      if (props.SectionList.onPress) props.SectionList.onPress(item.item);
+    };
+    
+    return (
+      <MotiView
+        from={{ translateX: 0 }}
+        transition={{ type: 'timing', duration: 450 }}
+      >
+        <ListItem onPress={onPress}>
+          <ListIcon icon="map-pin" />
+          <Column>
+            <Text weight="h4" style={{ color: '#AAAAAA' }}>
+              {item.item.description}
+            </Text>
+          </Column>
+        </ListItem>
+      </MotiView>
     );
   };
 
@@ -58,11 +94,7 @@ export const BottomSheetSearchListComponent =  React.forwardRef<BottomSheet,IBot
   };
 
   return (
-    <BottomSheet
-      snapPoints={snapPoints}
-      ref={ref}
-      style={styles.bottomSheet}
-    >
+    <BottomSheet snapPoints={snapPoints} ref={ref} style={styles.bottomSheet}>
       <View style={styles.input}>
         <Feather name="search" size={16} color={'#AAAAAA'} />
         <BottomSheetTextInput {...props.TextInputOptions} />
@@ -72,7 +104,7 @@ export const BottomSheetSearchListComponent =  React.forwardRef<BottomSheet,IBot
         sections={props.SectionList.data}
         stickySectionHeadersEnabled={true}
         keyExtractor={(i) => i._id}
-        renderItem={SubjectRenderItem}
+        renderItem={pressed ? SubjectRenderItem : SubjectInfoItem}
       />
     </BottomSheet>
   );
