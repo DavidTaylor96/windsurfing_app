@@ -1,0 +1,41 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`List Headeru 1`] = `
+<View
+  style={
+    Object {
+      "backgroundColor": "white",
+      "marginHorizontal": 20,
+      "paddingVertical": 10,
+    }
+  }
+>
+  <Text
+    style={
+      Array [
+        Object {
+          "fontFamily": "sora-regular",
+          "fontSize": 24,
+        },
+        Object {
+          "color": "black",
+        },
+        undefined,
+      ]
+    }
+    weight="h1"
+  >
+    Header
+  </Text>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#F401F2",
+        "height": 2,
+        "marginTop": 3,
+        "width": 40,
+      }
+    }
+  />
+</View>
+`;
