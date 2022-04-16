@@ -32,7 +32,7 @@ export const Playground = () => {
       <Button onPress={getUserLocatoin}>
         <Icon icon="navigation" />
       </Button>
-      <BottomSheetSearchListComponent
+      {/* <BottomSheetSearchListComponent
         SectionList={{ data: data, onPress }}
         TextInputOptions={{
           placeholder: 'Search for a location',
@@ -43,7 +43,7 @@ export const Playground = () => {
           onSubmitEditing: goToLocation,
         }}
         ref={sheetRef}
-      />
+      /> */}
     </View>
   );
 };

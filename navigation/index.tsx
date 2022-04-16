@@ -14,7 +14,6 @@ import { ColorSchemeName } from "react-native";
 import HomeScreen from "../screens/home-page/home-page";
 import { Playground } from "../screens/playground/playground";
 import { RootStackParamList } from "../types";
-import LinkingConfiguration from "./LinkingConfiguration";
 
 export default function Navigation({
   colorScheme,
@@ -23,7 +22,6 @@ export default function Navigation({
 }) {
   return (
     <NavigationContainer
-      linking={LinkingConfiguration}
       theme={colorScheme === "dark" ? DarkTheme : DefaultTheme}
     >
       <RootNavigator />
@@ -37,9 +35,9 @@ const Stack = createStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
   return (
-    <Stack.Navigator screenOptions={{ headerShown: false }}>
-      {/* <Stack.Screen name="Root" component={HomeScreen} /> */}
-      <Stack.Screen name="Playground" component={Playground} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}  >
+      <Stack.Screen name="Root" component={HomeScreen} />
+      {/* <Stack.Screen name="Playground" component={Playground} /> */}
     </Stack.Navigator>
   );
 }

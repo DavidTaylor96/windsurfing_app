@@ -14,25 +14,12 @@ import { ListHeader } from '../list-item/list-header';
 import { ListItem } from '../list-item/list-item';
 import { Column } from '../placement-component/placement-component';
 import { Text, View } from '../Themed/Themed';
+import { IBottomSheet } from './bottom-sheet-type';
+import { RenderFeedHeader } from './render-header/render-feed-header';
+import { SubjectInfoItem } from './render-items/subject-info-item';
+import { SubjectRenderItem } from './render-items/subject-render-item';
 
-export interface IData {
-  _id: string;
-  title: string;
-  description: string;
-}
 
-export type SectionList = {
-  title: string;
-  data: Array<IData>;
-};
-
-interface IBottomSheet {
-  TextInputOptions: BottomSheetTextInputProps;
-  SectionList: {
-    data: SectionList[];
-    onPress: (item: IData) => void;
-  };
-}
 
 export const BottomSheetSearchListComponent = React.forwardRef<
   BottomSheet,
@@ -41,57 +28,6 @@ export const BottomSheetSearchListComponent = React.forwardRef<
 
   const { snapPoints } = useMapNavigation();
   const {pressed } = useMarkerPressed();
-
-
-  const SubjectRenderItem = (item: { item: IData }) => {
-
-    const onPress = () => {
-      if (props.SectionList.onPress) props.SectionList.onPress(item.item);
-    };
-    
-    return (
-      <MotiView
-        from={{ translateX: 0 }}
-        transition={{ type: 'timing', duration: 450 }}
-      >
-        <ListItem onPress={onPress}>
-          <ListIcon icon="map-pin" />
-          <Column>
-            <Text weight="h3">{item.item.title}</Text>
-            <Text weight="h4" style={{ color: '#AAAAAA' }}>
-              {item.item.description}
-            </Text>
-          </Column>
-        </ListItem>
-      </MotiView>
-    );
-  };
-  const SubjectInfoItem = (item: { item: IData }) => {
-
-    const onPress = () => {
-      if (props.SectionList.onPress) props.SectionList.onPress(item.item);
-    };
-    
-    return (
-      <MotiView
-        from={{ translateX: 0 }}
-        transition={{ type: 'timing', duration: 450 }}
-      >
-        <ListItem onPress={onPress}>
-          <ListIcon icon="map-pin" />
-          <Column>
-            <Text weight="h4" style={{ color: '#AAAAAA' }}>
-              {item.item.description}
-            </Text>
-          </Column>
-        </ListItem>
-      </MotiView>
-    );
-  };
-
-  const RenderFeedHeader = ({ section }: any) => {
-    return <ListHeader>{section.title}</ListHeader>;
-  };
 
   return (
     <BottomSheet snapPoints={snapPoints} ref={ref} style={styles.bottomSheet}>
