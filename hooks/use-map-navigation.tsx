@@ -37,9 +37,6 @@ export const useMapNavigation = () => {
     setChosenLocationText(value);
   };
 
-  const onPress = () => {
-    alert('batman');
-  };
 
   const goToLocation = async () => {
     const hasLocationPermissions =
@@ -95,7 +92,6 @@ export const useMapNavigation = () => {
     animateToCoordinat,
     onRegionChangeComplete,
     onChange,
-    onPress,
     goToLocation,
     chosenLocation,
     chosenLocationText,

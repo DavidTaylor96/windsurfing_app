@@ -1,9 +1,7 @@
-import { Fontisto } from '@expo/vector-icons';
 import * as React from 'react';
 import { FC } from 'react';
 import { StyleSheet } from 'react-native';
-import MapView, { Marker, Region } from 'react-native-maps';
-import { useMarkerPressed } from '../../hooks/marker-pressed';
+import MapView, { Region } from 'react-native-maps';
 import { useMapNavigation } from '../../hooks/use-map-navigation';
 import { markers } from './map-data';
 import { MapMarkers } from './map-markers';
@@ -23,7 +21,6 @@ interface IMapArea {
 export const MapArea: FC<IMapArea> = ({ region, onRegionChangeComplete }) => {
   const { mapRef, animateToCoordinat } = useMapNavigation();
 
-
   React.useEffect(() => {
     if (mapRef?.current) {
       mapRef?.current.fitToSuppliedMarkers(markers.map(({ id }) => id));
@@ -41,11 +38,17 @@ export const MapArea: FC<IMapArea> = ({ region, onRegionChangeComplete }) => {
       showsCompass={false}
       zoomControlEnabled={false}
     >
-      <MapMarkers />
+      {markers.map((marker) => (
+        <MapMarkers
+          animateToCoordinat={() =>
+            animateToCoordinat(marker.latitude, marker.longitude)
+          }
+          marker={marker}
+        />
+      ))}
     </MapView>
   );
 };
-
 
 const styles = StyleSheet.create({
   wrapper: {

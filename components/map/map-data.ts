@@ -1,4 +1,13 @@
-export const markers = [
+export interface IMarker {
+  id: string;
+  latitude: number;
+  longitude: number;
+  title: string;
+  description: string;
+}
+
+
+export const markers: IMarker[] = [
   {
     id: '123',
     latitude: 55.953251,

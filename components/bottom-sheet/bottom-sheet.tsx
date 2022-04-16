@@ -1,71 +1,24 @@
-import { Feather } from '@expo/vector-icons';
-import BottomSheet, {
-  BottomSheetSectionList,
-  BottomSheetTextInput,
-} from '@gorhom/bottom-sheet';
-import { BottomSheetTextInputProps } from '@gorhom/bottom-sheet/lib/typescript/components/bottomSheetTextInput/types';
-import { MotiView } from 'moti';
-import React, { FC, forwardRef } from 'react';
+import BottomSheet from '@gorhom/bottom-sheet';
+import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
-import { useMarkerPressed } from '../../hooks/marker-pressed';
 import { useMapNavigation } from '../../hooks/use-map-navigation';
-import { ListIcon } from '../list-icon/list-icons';
-import { ListHeader } from '../list-item/list-header';
-import { ListItem } from '../list-item/list-item';
-import { Column } from '../placement-component/placement-component';
-import { Text, View } from '../Themed/Themed';
-import { IBottomSheet } from './bottom-sheet-type';
-import { RenderFeedHeader } from './render-header/render-feed-header';
-import { SubjectInfoItem } from './render-items/subject-info-item';
-import { SubjectRenderItem } from './render-items/subject-render-item';
 
+interface IBottomSheet {}
 
+export const BottomSheetWrapper: FC<IBottomSheet> = (({ children }) => {
+    const { snapPoints, sheetRef } = useMapNavigation();
+    
 
-export const BottomSheetSearchListComponent = React.forwardRef<
-  BottomSheet,
-  IBottomSheet
->((props, ref) => {
-
-  const { snapPoints } = useMapNavigation();
-  const {pressed } = useMarkerPressed();
-
-  return (
-    <BottomSheet snapPoints={snapPoints} ref={ref} style={styles.bottomSheet}>
-      <View style={styles.input}>
-        <Feather name="search" size={16} color={'#AAAAAA'} />
-        <BottomSheetTextInput {...props.TextInputOptions} />
-      </View>
-      <BottomSheetSectionList
-        renderSectionHeader={RenderFeedHeader}
-        sections={props.SectionList.data}
-        stickySectionHeadersEnabled={true}
-        keyExtractor={(i) => i._id}
-        renderItem={pressed ? SubjectRenderItem : SubjectInfoItem}
-      />
-    </BottomSheet>
-  );
-});
+    return (
+      <BottomSheet snapPoints={snapPoints} ref={sheetRef} style={styles.bottomSheet}>
+        {children}
+      </BottomSheet>
+    );
+  }
+);
 
 const styles = StyleSheet.create({
   bottomSheet: {
     marginTop: 100,
-  },
-  input: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 8,
-    marginBottom: 10,
-    marginHorizontal: 15,
-    borderRadius: 6,
-    fontSize: 16,
-    lineHeight: 20,
-    padding: 8,
-    borderColor: '#CBCBCB',
-    borderWidth: 1,
-  },
-
-  searchWrapper: {
-    alignItems: 'center',
-    marginRight: 5,
   },
 });

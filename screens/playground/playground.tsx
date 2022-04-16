@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { StyleSheet } from 'react-native';
-import { BottomSheetSearchListComponent } from '../../components/bottom-sheet/bottom-sheet';
 import { Button } from '../../components/buttons/button';
 import { Icon } from '../../components/icons/icons';
 import { MapArea } from '../../components/map/map';
@@ -17,7 +16,6 @@ export const Playground = () => {
     onChange,
     chosenLocationText,
     goToLocation,
-    onPress,
     getUserLocatoin,
     sheetRef,
   } = useMapNavigation();
