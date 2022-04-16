@@ -3,6 +3,7 @@
 exports[`List Item 1`] = `
 <View
   accessible={true}
+  collapsable={false}
   focusable={true}
   onBlur={[Function]}
   onClick={[Function]}

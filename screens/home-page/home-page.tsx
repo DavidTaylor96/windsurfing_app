@@ -25,12 +25,11 @@ export default function HomeScreen() {
   } = useMapNavigation();
 
   return (
-    <View style={[styles.wrapper, { paddingTop: insets.top }]}>
+    <View style={styles.wrapper}>
       <MapArea
         onRegionChangeComplete={onRegionChangeComplete}
         region={chosenLocation}
       />
-
       <Button onPress={getUserLocatoin}>
         <Icon icon="navigation" />
       </Button>

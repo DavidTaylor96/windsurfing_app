@@ -87,6 +87,7 @@
       "pass",
       "skip",
     ],
-    "editor.tabSize": 2
+    "editor.tabSize": 2,
+    "jest.jestCommandLine": "npm run  test -- --watch"
   }
   
