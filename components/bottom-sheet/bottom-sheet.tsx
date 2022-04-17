@@ -5,17 +5,19 @@ import { useMapNavigation } from '../../hooks/use-map-navigation';
 
 interface IBottomSheet {}
 
-export const BottomSheetWrapper: FC<IBottomSheet> = (({ children }) => {
-    const { snapPoints, sheetRef } = useMapNavigation();
-    
+export const BottomSheetWrapper: FC<IBottomSheet> = ({ children }) => {
+  const { snapPoints, sheetRef } = useMapNavigation();
 
-    return (
-      <BottomSheet snapPoints={snapPoints} ref={sheetRef} style={styles.bottomSheet}>
-        {children}
-      </BottomSheet>
-    );
-  }
-);
+  return (
+    <BottomSheet
+      snapPoints={snapPoints}
+      ref={sheetRef}
+      style={styles.bottomSheet}
+    >
+      {children}
+    </BottomSheet>
+  );
+};
 
 const styles = StyleSheet.create({
   bottomSheet: {

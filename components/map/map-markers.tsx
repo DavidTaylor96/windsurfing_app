@@ -5,7 +5,7 @@ import { useMarkerPressed } from '../../hooks/marker-pressed';
 import { IMarker } from './map-data';
 
 interface IMapMarkersProps {
-  animateToCoordinat: (coordinate: {
+  animateToCoordinat: (coordinate?: {
     latitude: number;
     longitude: number;
   }) => void;
@@ -15,20 +15,12 @@ interface IMapMarkersProps {
 export const MapMarkers: FC<IMapMarkersProps> = ({
   animateToCoordinat,
   marker,
+  children,
 }) => {
-  const { pressed, setPressed } = useMarkerPressed();
-
-  const onAnimateToCoordinat = (coordinate: {
-    latitude: number;
-    longitude: number;
-  }) => {
-    animateToCoordinat(coordinate);
-    setPressed(!pressed);
-  };
 
   return (
     <Marker
-      onPress={() => onAnimateToCoordinat(marker)}
+      onPress={() =>  animateToCoordinat(marker)}
       key={marker?.id}
       identifier={marker?.id}
       coordinate={{
@@ -37,7 +29,7 @@ export const MapMarkers: FC<IMapMarkersProps> = ({
       }}
       title={marker?.title}
     >
-      <Fontisto name="map-marker-alt" size={29} color="#bf0f2b" />
+      {children}
     </Marker>
   );
 };
