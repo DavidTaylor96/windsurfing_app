@@ -1,7 +1,7 @@
 import BottomSheet from '@gorhom/bottom-sheet';
 import React, { FC } from 'react';
 import { StyleSheet } from 'react-native';
-import { useMapNavigation } from '../../hooks/use-map-navigation';
+import { useMapNavigation } from '../../hooks/use-map/use-map-navigation';
 
 interface IBottomSheet {}
 

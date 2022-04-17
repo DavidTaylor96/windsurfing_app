@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Room Map markers component 1`] = `
+exports[`Map markers component 1`] = `
 <AIRMapMarker
   coordinate={
     Object {

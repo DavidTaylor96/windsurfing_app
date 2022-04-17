@@ -4,7 +4,7 @@ import { FC } from 'react';
 import { StyleSheet } from 'react-native';
 import MapView, { Region } from 'react-native-maps';
 import { useMarkerPressed } from '../../hooks/marker-pressed';
-import { useMapNavigation } from '../../hooks/use-map-navigation';
+import { useMapNavigation } from '../../hooks/use-map/use-map-navigation';
 import { markers } from './map-data';
 import { MapMarkers } from './map-markers';
 
@@ -21,26 +21,15 @@ interface IMapArea {
 }
 
 export const MapArea: FC<IMapArea> = ({ region, onRegionChangeComplete }) => {
+  const { mapRef, zoomInOnMarker } = useMapNavigation();
 
-  const { mapRef, animateToCoordinat } = useMapNavigation();
+  const { pressed, setPressed } = useMarkerPressed();
 
-  const {pressed, setPressed} = useMarkerPressed();
-
-
-
-
-  const onAnimateToCoordinat = (latitude: number, longitude: number) => {
-    animateToCoordinat(latitude, longitude);
+  const onZoomIntoMarker = (latitude: number, longitude: number) => {
+    zoomInOnMarker(latitude, longitude);
     setPressed(!pressed);
   };
 
-  React.useEffect(() => {
-    if (mapRef?.current) {
-      mapRef?.current.fitToSuppliedMarkers(markers.map(({ id }) => id));
-    }
-  }, [markers]);
-
- 
 
   return (
     <MapView
@@ -56,7 +45,7 @@ export const MapArea: FC<IMapArea> = ({ region, onRegionChangeComplete }) => {
       {markers.map((marker, index) => (
         <MapMarkers
           key={index}
-          animateToCoordinat={() =>onAnimateToCoordinat(marker.latitude, marker.longitude)}
+          goToMarker={() => onZoomIntoMarker(marker.latitude, marker.longitude)}
           marker={marker}
         >
           <Fontisto name="map-marker-alt" size={29} color="#bf0f2b" />

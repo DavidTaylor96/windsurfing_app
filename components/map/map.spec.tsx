@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Region } from 'react-native-maps';
+import { Marker, Region } from 'react-native-maps';
 import renderer from 'react-test-renderer';
 import { MapArea } from './map';
 import { MapMarkers } from './map-markers';
@@ -14,9 +14,19 @@ it(`Map area`, () => {
     longitudeDelta: 5.5612,
   };
 
+  const marker  = require('./map-data');
+
+
+  const onZoomIntoMarker = jest.fn((latitude: number, longitude: number) => {
+    onRegionChange(latitude, longitude);
+  });
+
   const mapArea = renderer.create(
     <MapArea onRegionChangeComplete={onRegionChange} region={location}>
-      <MapMarkers />
+        <MapMarkers
+          goToMarker={() => onZoomIntoMarker(marker.latitude, marker.longitude)}
+          marker={marker}
+        ></MapMarkers>
     </MapArea>
   );
 
